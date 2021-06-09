@@ -16,7 +16,7 @@ export default function App() {
     .then(quote => quote.json())
     .then(quote=>{
       setText(quote.content);
-      setAuthor(quote.author)
+      setAuthor(quote.author);
       }
     )
   }
@@ -25,7 +25,7 @@ export default function App() {
     .then(quote => quote.json())
     .then(quote=>{
       setText(quote.content);
-      setAuthor(quote.author)
+      setAuthor(quote.author);
       }
     )
   }
