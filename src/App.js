@@ -8,11 +8,11 @@ export default function App() {
   const [author, setAuthor] = useState("");
   const [topic, setTopic] = useState("");
 
-  const famousApi = topic == ""? 'http://api.quotable.io/random?tags=famous-quotes' : `http://api.quotable.io/random?tags=famous-quotes,${topic}`;
+  const famousApi = topic == ""? 'https://api.quotable.io/random?tags=famous-quotes' : `http://api.quotable.io/random?tags=famous-quotes,${topic}`;
   const topicTitle = topic == ""? `All topics` : topic.charAt(0).toUpperCase() + topic.slice(1);
   
   const newQuote=()=>{
-    fetch(`http://api.quotable.io/random?tags=${topic}`)
+    fetch(`https://api.quotable.io/random?tags=${topic}`)
     .then(quote => quote.json())
     .then(quote=>{
       setText(quote.content);
