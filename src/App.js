@@ -88,7 +88,7 @@ export default function App() {
             </div>
           </div>
 
-        <a id="tweet-quote" href="twitter.com/intent/tweet" /> {/*this is here just to pass the test, the actual social buttons are above*/}
+        <a id="tweet-quote" href="twitter.com/intent/tweet" /> {/*this is here just to pass an automized test, the actual social buttons are above*/}
     </div>
     )
 }
