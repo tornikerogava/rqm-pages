@@ -19,7 +19,7 @@ export default function App() {
   const [topic, setTopic] = useState("");
   const [color, setColor] = useState("");
 
-  const famousApi = topic == ""? 'https://api.quotable.io/random?tags=famous-quotes' : `http://api.quotable.io/random?tags=famous-quotes,${topic}`;
+  const famousApi = topic == ""? 'https://api.quotable.io/random?tags=famous-quotes' : `https://api.quotable.io/random?tags=famous-quotes,${topic}`;
   const topicTitle = topic == ""? `All topics` : topic.charAt(0).toUpperCase() + topic.slice(1);
   
   const newQuote=()=>{
