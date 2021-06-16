@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {FacebookShareButton, TwitterShareButton,} from "react-share";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button, Dropdown, DropdownButton} from 'react-bootstrap'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button, Dropdown} from 'react-bootstrap';
+import logo from "./Images/TR-04.svg";
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,16 +10,9 @@ import {faTwitterSquare, faFacebookSquare} from "@fortawesome/free-brands-svg-ic
   
 
 export default function App() {
-  const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
-		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
-		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
-		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
-		  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
-		  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
-		  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
-		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
-		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
-		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+  const colorArray = ['#16a085','#27ae60','#2c3e50','#f39c12','#e74c3c','#73A857',
+                      '#9b59b6','#FB6964','#342224','#472E32','#BDBB99','#77B1A9',
+  ];
 
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
@@ -60,43 +53,47 @@ export default function App() {
   
   return (
     
-    <div id="quote-box" style={{backgroundColor:"red", display:"flex", justifyContent:"center"}}>
+    <div id="quote-box" style={{fontFamily:"Lobster, cursive",background:color, height:"100vh", color:color, display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
           
         
-          <div style={{borderRadius:"1em", display:"flex", padding:"10px", flexDirection:"column", position:"absolute", background:"lightBlue", width:"50%", top:"50%", msTransform: "translateY(-50%)", transform: "translateY(-50%)"}}>
+          <div style={{borderRadius:"1em", display:"flex", padding:"10px", flexDirection:"column", background:"white", width:"50%"}}>
           
             
-              <div className="quoteBox">
+              <div className="quoteBox" style={{margin:20}}>
                 <div  id="text">
-                  <p>{text}</p>
+                  <p style={{fontSize:"3rem"}}>{text}</p>
                 </div>
-                <div id="author" style={{}}>
-                <p>- {author}</p>
+                <div id="author" style={{fontSize:"2rem"}}>
+                  <p>- {author}</p>
                 </div>
               </div>
             
-          
-            <div style={{display:"flex", justifyContent:"space-between"}}>
-              <div style={{display:"flex", justifyContent:"space-between"}}>
-                <DropdownButton id="topic-dropdown" variant="light" title={topicTitle}>
-                  <Dropdown.Item onClick={()=> setTopic("")}>All Topics</Dropdown.Item>
-                  <Dropdown.Item onClick={()=> setTopic("wisdom")}>Wisdom</Dropdown.Item>
-                  <Dropdown.Item onClick={()=> setTopic("inspirational")}>Inspirational</Dropdown.Item>
-                  <Dropdown.Item onClick={()=> setTopic("technology")}>Technology</Dropdown.Item>
-                  <Dropdown.Item onClick={()=> setTopic("friendship")}>Friendship</Dropdown.Item>
-                </DropdownButton>
+
+            <div className="bottomRow" style={{fontFamily:"cursive", display:"flex", justifyContent:"space-between", margin:"0 1em 0.7em"}}>
+              <div className="buttons" style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+
+              <Dropdown>
+                  <Dropdown.Toggle  id="dropdown-basic" style={{backgroundColor:color, border:"0", marginRight:"1em"}}>{topicTitle}</Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=> setTopic("")}>All Topics</Dropdown.Item>
+                    <Dropdown.Item onClick={()=> setTopic("wisdom")}>Wisdom</Dropdown.Item>
+                    <Dropdown.Item onClick={()=> setTopic("inspirational")}>Inspirational</Dropdown.Item>
+                    <Dropdown.Item onClick={()=> setTopic("technology")}>Technology</Dropdown.Item>
+                    <Dropdown.Item onClick={()=> setTopic("friendship")}>Friendship</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               
-                <Button style={{backgroundColor: color, border:"0"}} id="new-quote" onClick={newQuote} >
+                <Button style={{backgroundColor: color, border:"0", marginRight:"0.4em"}} id="new-quote" onClick={newQuote} >
                       Random Quote
                 </Button>
                 
-                <Button id="famous-quote" onClick={famousQuote}>
+                <Button style={{backgroundColor: color, border:"0"}} id="famous-quote" onClick={famousQuote}>
                       Famous Quote
                 </Button>
               
               </div>
               <div className="socials">
-                <TwitterShareButton style={{marginRight:"5px"}} url={quoteWithHash} appId={21095180}>
+                <TwitterShareButton style={{marginRight:"0.8em"}} url={quoteWithHash} appId={21095180}>
                 <FontAwesomeIcon icon={faTwitterSquare} size="3x" style={{color: color}} />
 
 
@@ -106,9 +103,13 @@ export default function App() {
                 <FontAwesomeIcon icon={faFacebookSquare} size="3x" style={{color: color}}/>
                 </FacebookShareButton>
               </div>
-              </div>
             </div>
-          
+          </div>
+          <div style={{color:"white", fontFamily:"sansSerif", display:"flex", marginTop:"0.5em"}} className="credits">
+            
+            <img src={logo} style={{height:"1.7em", color:"white"}} />
+            
+          </div>
         
         <a id="tweet-quote" href="twitter.com/intent/tweet" /> {/*this is here just to pass an automized test, the actual social buttons are above*/}
     </div>
