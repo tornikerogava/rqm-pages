@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton,} from "react-share";
+import {FacebookShareButton, TwitterShareButton,} from "react-share";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Button, Dropdown, DropdownButton, Container} from 'react-bootstrap'
+import {Button, Dropdown, DropdownButton} from 'react-bootstrap'
+
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTwitter, faTwitterSquare, faFacebookSquare} from "@fortawesome/free-brands-svg-icons"
+import {faTwitterSquare, faFacebookSquare} from "@fortawesome/free-brands-svg-icons"
   
 
 export default function App() {
@@ -22,7 +24,7 @@ export default function App() {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
   const [topic, setTopic] = useState("");
-  const randomColor= colorArray[Math.floor(Math.random() * colorArray.length)]
+  const [color, setColor] = useState("");
 
   const famousApi = topic == ""? 'https://api.quotable.io/random?tags=famous-quotes' : `http://api.quotable.io/random?tags=famous-quotes,${topic}`;
   const topicTitle = topic == ""? `All topics` : topic.charAt(0).toUpperCase() + topic.slice(1);
@@ -33,6 +35,7 @@ export default function App() {
     .then(quote=>{
       setText(quote.content);
       setAuthor(quote.author);
+      setColor(colorArray[Math.floor(Math.random() * colorArray.length)]);
       }
     )
   }
@@ -42,6 +45,7 @@ export default function App() {
     .then(quote=>{
       setText(quote.content);
       setAuthor(quote.author);
+      setColor(colorArray[Math.floor(Math.random() * colorArray.length)]);
       }
     )
   }
@@ -55,19 +59,22 @@ export default function App() {
   
   
   return (
-    <div id="quote-box" style={{display:"flex", justifyContent:"center"}}>
+    
+    <div id="quote-box" style={{backgroundColor:"red", display:"flex", justifyContent:"center"}}>
           
         
           <div style={{borderRadius:"1em", display:"flex", padding:"10px", flexDirection:"column", position:"absolute", background:"lightBlue", width:"50%", top:"50%", msTransform: "translateY(-50%)", transform: "translateY(-50%)"}}>
           
-            <blockquote className="blockquote mb-0" >
-              <div id="text">
-                <p>{text}</p>
+            
+              <div className="quoteBox">
+                <div  id="text">
+                  <p>{text}</p>
+                </div>
+                <div id="author" style={{}}>
+                <p>- {author}</p>
+                </div>
               </div>
-              <div id="author" style={{}}>
-                <cite>- {author}</cite>
-              </div>
-            </blockquote>
+            
           
             <div style={{display:"flex", justifyContent:"space-between"}}>
               <div style={{display:"flex", justifyContent:"space-between"}}>
@@ -79,7 +86,7 @@ export default function App() {
                   <Dropdown.Item onClick={()=> setTopic("friendship")}>Friendship</Dropdown.Item>
                 </DropdownButton>
               
-                <Button style={{backgroundColor: randomColor, border:"0"}} id="new-quote" onClick={newQuote} >
+                <Button style={{backgroundColor: color, border:"0"}} id="new-quote" onClick={newQuote} >
                       Random Quote
                 </Button>
                 
@@ -90,13 +97,13 @@ export default function App() {
               </div>
               <div className="socials">
                 <TwitterShareButton style={{marginRight:"5px"}} url={quoteWithHash} appId={21095180}>
-                <FontAwesomeIcon icon={faTwitterSquare} size="3x" style={{color: randomColor}} />
+                <FontAwesomeIcon icon={faTwitterSquare} size="3x" style={{color: color}} />
 
 
                 </TwitterShareButton>
                 <FacebookShareButton url={"github.com"} quote={fullQuote} appId={212712967333963}>
 
-                <FontAwesomeIcon icon={faFacebookSquare} size="3x" style={{color: randomColor}}/>
+                <FontAwesomeIcon icon={faFacebookSquare} size="3x" style={{color: color}}/>
                 </FacebookShareButton>
               </div>
               </div>
