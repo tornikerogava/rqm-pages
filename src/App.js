@@ -106,12 +106,14 @@ export default function App() {
             </div>
           </div>
           <div style={{color:"white", fontFamily:"sansSerif", display:"flex", marginTop:"0.5em"}} className="credits">
-            
-            <img src={logo} style={{height:"1.7em", color:"white"}} />
-            
+
+            <a className="TRLogo" href="https://github.com/tornikerogava"> 
+              <img src={logo} style={{height:"1.7em", color:"white"}} />
+            </a>
           </div>
         
         <a id="tweet-quote" href="twitter.com/intent/tweet" /> {/*this is here just to pass an automized test, the actual social buttons are above*/}
     </div>
     )
 }
+  
